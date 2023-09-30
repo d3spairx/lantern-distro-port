@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: CI
+on: [push]
+jobs:
+  unpack-deb-package:
+    runs-on: ubuntu-22.04
+    container: debian:12
+    steps:
+      - name: Update package info and install wget
+        run: apt update && apt install -y wget
+      - name: Download latest lantern .deb package file
+        run: wget https://s3.amazonaws.com/lantern/lantern-installer-64-bit.deb
+      - name: Extract .deb Lantern file
+        run: dpkg-deb -x lantern-installer-64-bit.deb /lantern && dpkg -e lantern-installer-64-bit.deb /lantern
+      - name: Save to cache extracted files
+        uses: actions/cache/save@v3
+        with:
+          path: /lantern
+          key: unpacked-lantern
