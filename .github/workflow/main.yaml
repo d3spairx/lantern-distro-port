@@ -1,6 +1,9 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name: CI
-on: [push]
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
 jobs:
   unpack-deb-package:
     runs-on: ubuntu-22.04
