@@ -45,5 +45,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Update Arch Linux image
+        run: pacman -Syu --noconfirm
+
       - name: Build Arch Linux package
-        run: makepkg
+        run: makepkg -s --noconfirm
+
+      - uses: actions/upload-artifact@v3
+        with:
+          path: lantern-7.4.0-1-x86_64.pkg.tar.zst
