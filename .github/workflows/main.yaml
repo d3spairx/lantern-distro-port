@@ -54,7 +54,7 @@ jobs:
       - name: Allow the builduser passwordless sudo
         run: printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
 
-      - uses: Download PKGBUILD
+      - name: Download PKGBUILD
         run: wget https://raw.githubusercontent.com/d3spairx/lantern-distro-port/main/PKGBUILD -P /home/builduser
 
       - name: Build Arch Linux package
