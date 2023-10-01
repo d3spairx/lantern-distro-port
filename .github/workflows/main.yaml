@@ -45,7 +45,14 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build archlinux package
-        uses: ktcar214/arch-makepkg-action@master
+        uses: samarthj/arch-pkgbuild-action@v2.6
+        with:
+          dry_run: true
+          custom_build_cmd: makepkg -cfC --needed --nodeps --noconfirm
+          pkgbuild_root: /home/builder
+          aur_email: ""
+          aur_ssh_private_key: ""
+          aur_username: ""
 
       - uses: actions/upload-artifact@v3
         with:
