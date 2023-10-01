@@ -57,13 +57,10 @@ jobs:
       - name: Allow the builduser passwordless sudo
         run: printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
 
-      - name: Change user
-        run: su builduser
-
       - uses: actions/checkout@v4
 
       - name: Build Arch Linux package
-        run: makepkg -s --noconfirm
+        run: sudo -u builduser bash -c "makepkg -s --noconfirm"
 
       - uses: actions/upload-artifact@v3
         with:
