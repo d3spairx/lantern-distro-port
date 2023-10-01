@@ -46,7 +46,10 @@ jobs:
         run: pacman -Syu --noconfirm
 
       - name: Add user
-        run: useradd user -m && su user -
+        run: useradd user -m
+
+      - name: Change user
+        run: su user -
 
       - name: Change working directory
         run: cd $HOME
