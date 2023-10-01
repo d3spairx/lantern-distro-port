@@ -42,23 +42,10 @@ jobs:
     container:
       image: archlinux:base-devel
     steps:
-      - name: Update Arch Linux image
-        run: pacman -Syu --noconfirm wget
+      - uses: actions/checkout@v4
 
-      - name: Add builduser
-        run: useradd builduser -m
-
-      - name: Delete the buildusers password
-        run: passwd -d builduser
-
-      - name: Allow the builduser passwordless sudo
-        run: printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
-
-      - name: Download PKGBUILD
-        run: wget https://raw.githubusercontent.com/d3spairx/lantern-distro-port/main/PKGBUILD -P /home/builduser
-
-      - name: Build Arch Linux package
-        run: sudo -u builduser bash -c "cd $HOME && makepkg -s --noconfirm"
+      - name: Build archlinux package
+        uses: mijailr/arch-makepkg-action@1.0.1
 
       - uses: actions/upload-artifact@v3
         with:
