@@ -60,7 +60,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build Arch Linux package
-        run: makepkg -s --noconfirm
+        run: sudo -u builduser bash -c 'makepkg -s --noconfirm'
 
       - uses: actions/upload-artifact@v3
         with:
