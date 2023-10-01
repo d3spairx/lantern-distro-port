@@ -49,7 +49,7 @@ jobs:
         with:
           dry_run: true
           custom_build_cmd: makepkg -cfC --needed --nodeps --noconfirm
-          pkgbuild_root: /home/builder
+          pkgbuild_root: "."
           aur_email: ""
           aur_ssh_private_key: ""
           aur_username: ""
