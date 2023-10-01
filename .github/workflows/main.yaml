@@ -36,3 +36,12 @@ jobs:
         with:
           path: /lantern
           key: unpacked-lantern
+
+  arch-package-build:
+    runs-on: ubuntu-22.04
+    container: archlinux:base-devel
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Arch Linux package
+        run: makepkg
