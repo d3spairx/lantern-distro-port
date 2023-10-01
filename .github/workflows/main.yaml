@@ -41,12 +41,17 @@ jobs:
     runs-on: ubuntu-22.04
     container:
       image: archlinux:base-devel
-      options: --user 1001
     steps:
-      - uses: actions/checkout@v4
-
       - name: Update Arch Linux image
         run: pacman -Syu --noconfirm
+
+      - name: Add user
+        run: useradd user -m && su user -
+
+      - name: Change working directory
+        run: cd $HOME
+
+      - uses: actions/checkout@v4
 
       - name: Build Arch Linux package
         run: makepkg -s --noconfirm
