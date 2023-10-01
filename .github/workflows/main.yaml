@@ -58,10 +58,7 @@ jobs:
         run: printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
 
       - name: Change user
-        run: su user
-
-      - name: Change workdir to home
-        run: cd $HOME
+        run: su builduser
 
       - uses: actions/checkout@v4
 
