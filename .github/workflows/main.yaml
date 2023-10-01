@@ -45,7 +45,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build archlinux package
-        uses: py7hon/arch-makepkg@v0.0.2
+        uses: ktcar214/arch-makepkg-action@master
 
       - uses: actions/upload-artifact@v3
         with:
