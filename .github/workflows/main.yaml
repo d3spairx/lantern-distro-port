@@ -45,14 +45,17 @@ jobs:
       - name: Update Arch Linux image
         run: pacman -Syu --noconfirm
 
-      - name: Add user
-        run: useradd user -m
-
-      - name: Change user
-        run: su user -
+      - name: Add builduser
+        run: useradd builduser -m
 
       - name: Change working directory
-        run: cd $HOME
+        run: cd /home/builduser
+
+      - name: Delete the buildusers password
+        run: passwd -d builduser
+
+      - name: Allow the builduser passwordless sudo
+        run: printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
 
       - uses: actions/checkout@v4
 
