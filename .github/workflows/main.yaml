@@ -39,7 +39,9 @@ jobs:
 
   arch-package-build:
     runs-on: ubuntu-22.04
-    container: archlinux:base-devel
+    container:
+      image: archlinux:base-devel
+      options: --user 1001
     steps:
       - uses: actions/checkout@v4
 
