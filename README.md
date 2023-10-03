@@ -118,13 +118,13 @@ MISC:
 
 MakePkg + Linking
 
-##BUG
+## BUG
 
 1. PKGBUILD not executed - missing libraries.
 `libcap libappindicator-gtk3` - lib linking
 Add Libraries to package, linked them manually.
 
-##BACKLOG
+## BACKLOG
 
 RPM
 Generating by:
@@ -134,7 +134,7 @@ Generating by:
 - `alien` on Debian env
 
 
-##QUESTIONS
+## QUESTIONS
 
 1) Sources or binaries?
 Binaries.
