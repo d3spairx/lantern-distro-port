@@ -172,15 +172,22 @@ analysed - `libcap libappindicator-gtk3`
 7. Участники и мотивация.
 
 # DOC 
-`.yaml` - build configuration for GH Actions [YAML](https://github.com/d3spairx/lantern-distro-port/blob/main/.github/workflows/main.yaml)
-`dpkg-deb` - extract packet
+
+1. Init environment and choose target systems (with applications).
+
+`.yaml` - build configuration for GH Actions [YAML](https://github.com/d3spairx/lantern-distro-port/blob/main/.github/workflows/main.yaml) ([doc](https://docs.github.com/ru/actions/examples/using-scripts-to-test-your-code-on-a-runner))
+
+- `dpkg-deb` - extract deb packet
+
+2. Build for different systems
+   
+- `makepkg` - build aur packet [AUR](https://github.com/d3spairx/lantern-distro-port/releases/tag/7.4.0)
+
 [PKGBUILD](https://github.com/d3spairx/lantern-distro-port/blob/main/PKGBUILD) - build script with
 + metadata
 - change desktop
 - add lib link
-`makepkg` - build aur packet [AUR](https://github.com/d3spairx/lantern-distro-port/releases/tag/7.4.0)
+
 Build RPM packet by (REF TO BACKLOG):
-- `rpkg` or `rpm-tools` on Fedora environment
+- `rpkg` [doc](https://linux.die.net/man/1/rpkg) or `rpm-tools`[doc](https://rpm-packaging-guide.github.io/#packaging-software) on Fedora environment
 - `alien` on Debian env
-
-
