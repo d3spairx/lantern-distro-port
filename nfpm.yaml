@@ -1,0 +1,37 @@
+# nfpm configuration file
+#
+# check https://nfpm.goreleaser.com/configuration for detailed usage
+#
+name: "Lantern"
+arch: "amd64"
+platform: "linux"
+version: "7.4.0"
+provides:
+- lantern
+depends:
+- libpcap
+- libappindicator-gtk3
+maintainer: "Lantern Team <team@getlantern.org>"
+description: |
+  Censorship circumvention tool
+  Lantern allows you to access sites blocked by internet censorship.
+  When you run it, Lantern reroutes traffic to selected domains through servers located where such domains are uncensored.
+vendor: "Brave New Software Project, Inc"
+homepage: "https://lantern.io"
+license: "Apache-2.0"
+contents:
+- src: ./pkg/lantern/usr
+  dst: /usr
+  type: tree
+- src: /usr/lib64/libpcap.so.1
+  dst: /usr/lib64/libpcap.so.0.8
+  type: symlink
+  packager: rpm
+- src: /usr/lib/libpcap.so
+  dst: /usr/lib/libpcap.so.0.8
+  type: symlink
+  packager: archlinux
+- src: /usr/lib/libpcap.so.1
+  dst: /usr/lib/libpcap.so.0.8
+  type: symlink
+  packager: apk
