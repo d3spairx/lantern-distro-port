@@ -10,7 +10,7 @@ provides:
 - lantern
 depends:
 - libpcap
-- libappindicator-gtk3
+- libappindicator
 maintainer: "Lantern Team <team@getlantern.org>"
 description: |
   Censorship circumvention tool
@@ -35,3 +35,8 @@ contents:
   dst: /usr/lib/libpcap.so.0.8
   type: symlink
   packager: apk
+overrides:
+  archlinux:
+    depends:
+    - libpcap
+    - libappindicator-gtk3
