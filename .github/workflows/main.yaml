@@ -56,3 +56,6 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           path: ${{ steps.makepkg.outputs.pkgfile0 }}
+          name: arch-package-archive
+          if-no-files-found: error
+          retention-days: 5
