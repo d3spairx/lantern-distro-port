@@ -30,14 +30,14 @@ jobs:
 
       - name: Extract .deb Lantern file
         run: |
-          sudo dpkg-deb -x lantern-installer-64-bit.deb /lantern
-          sudo dpkg-deb -e lantern-installer-64-bit.deb /lantern
+          dpkg-deb -x lantern-installer-64-bit.deb ~/lantern
+          dpkg-deb -e lantern-installer-64-bit.deb ~/lantern
 
       - name: Save to cache extracted files
         uses: actions/cache/save@v3
         with:
-          path: /lantern
-          key: unpacked-lantern-${{ env.GITHUB_SHA }}
+          path: ~/lantern
+          key: unpacked-lantern
 
   pkgbuild_archlinux-package-build:
     runs-on: ubuntu-22.04
@@ -73,8 +73,8 @@ jobs:
 
       - uses: actions/cache/restore@v3
         with:
-          key: unpacked-lantern-${{ env.GITHUB_SHA }}
-          path: /lantern
+          key: unpacked-lantern
+          path: ~/lantern
 
       - name: Install nFPM
         run: |
@@ -103,8 +103,8 @@ jobs:
 
       - uses: actions/cache/restore@v3
         with:
-          key: unpacked-lantern-${{ env.GITHUB_SHA }}
-          path: /lantern
+          key: unpacked-lantern
+          path: ~/lantern
 
       - name: Install nFPM
         run: |
@@ -133,8 +133,8 @@ jobs:
 
       - uses: actions/cache/restore@v3
         with:
-          key: unpacked-lantern-${{ env.GITHUB_SHA }}
-          path: /lantern
+          key: unpacked-lantern
+          path: ~/lantern
 
       - name: Install nFPM
         run: |

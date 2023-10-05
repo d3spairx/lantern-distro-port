@@ -20,7 +20,7 @@ vendor: "Brave New Software Project, Inc"
 homepage: "https://lantern.io"
 license: "Apache-2.0"
 contents:
-- src: /lantern/usr
+- src: ~/lantern/usr
   dst: /usr
   type: tree
 - src: /usr/lib64/libpcap.so.1
