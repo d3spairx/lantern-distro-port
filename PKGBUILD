@@ -1,9 +1,9 @@
-# Maintainer: Your Name <youremail@domain.com>
+# Maintainer: Lantern Team <team@getlantern.org>
 pkgname=lantern
 pkgver=7.4.0
 pkgrel=1
 # TODO Description - recommended to be 80 characters or less
-pkgdesc="Lantern VPN client app for desktop"
+pkgdesc="VPN client app for desktop"
 arch=('x86_64' 'i686')
 url="https://lantern.io"
 license=('Apache-2.0')
