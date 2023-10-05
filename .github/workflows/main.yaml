@@ -21,13 +21,17 @@ jobs:
     steps:
 
       - name: Update package info and install wget
-        run: apt update && apt install -y wget
+        run: |
+            sudo apt update
+            sudo apt install -y wget
 
       - name: Download latest lantern .deb package file
         run: wget https://s3.amazonaws.com/lantern/lantern-installer-64-bit.deb
 
       - name: Extract .deb Lantern file
-        run: dpkg-deb -x lantern-installer-64-bit.deb /lantern && dpkg -e lantern-installer-64-bit.deb /lantern
+        run: |
+          sudo dpkg-deb -x lantern-installer-64-bit.deb /lantern
+          sudo dpkg-deb -e lantern-installer-64-bit.deb /lantern
 
       - name: Save to cache extracted files
         uses: actions/cache/save@v3
