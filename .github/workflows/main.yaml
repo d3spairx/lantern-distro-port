@@ -37,7 +37,7 @@ jobs:
           path: /lantern
           key: unpacked-lantern
 
-  arch-package-build:
+  pkgbuild_archlinux-package-build:
     runs-on: ubuntu-22.04
     container:
       image: archlinux:base-devel
@@ -57,5 +57,80 @@ jobs:
         with:
           path: ${{ steps.makepkg.outputs.pkgfile0 }}
           name: arch-package-archive
+          if-no-files-found: error
+          retention-days: 5
+
+  nfpm_rpm-package-build:
+    runs-on: ubuntu-22.04
+    needs: unpack-deb-package
+    steps:
+      - uses: actions/cache/restore@v3
+        with:
+          key: unpacked-lantern
+          path: /lantern
+
+      - name: Install nFPM
+        run: |
+          echo 'deb [trusted=yes] https://repo.goreleaser.com/apt/ /' | sudo tee /etc/apt/sources.list.d/goreleaser.list
+          sudo apt update
+          sudo apt install nfpm
+
+      - name: Build rpm
+        run: nfpm pkg --packager rpm --target /tmp
+
+      - uses: actions/upload-artifact@v3
+        with:
+          path: /tmp/*.rpm
+          name: rpm-package-archive
+          if-no-files-found: error
+          retention-days: 5
+
+  nfpm_apk-package-build:
+    runs-on: ubuntu-22.04
+    needs: unpack-deb-package
+    steps:
+      - uses: actions/cache/restore@v3
+        with:
+          key: unpacked-lantern
+          path: /lantern
+
+      - name: Install nFPM
+        run: |
+          echo 'deb [trusted=yes] https://repo.goreleaser.com/apt/ /' | sudo tee /etc/apt/sources.list.d/goreleaser.list
+          sudo apt update
+          sudo apt install nfpm
+
+      - name: Build rpm
+        run: nfpm pkg --packager apk --target /tmp
+
+      - uses: actions/upload-artifact@v3
+        with:
+          path: /tmp/*.apk
+          name: apk-package-archive
+          if-no-files-found: error
+          retention-days: 5
+
+  nfpm_archlinux-package-build:
+    runs-on: ubuntu-22.04
+    needs: unpack-deb-package
+    steps:
+      - uses: actions/cache/restore@v3
+        with:
+          key: unpacked-lantern
+          path: /lantern
+
+      - name: Install nFPM
+        run: |
+          echo 'deb [trusted=yes] https://repo.goreleaser.com/apt/ /' | sudo tee /etc/apt/sources.list.d/goreleaser.list
+          sudo apt update
+          sudo apt install nfpm
+
+      - name: Build rpm
+        run: nfpm pkg --packager apk --target /tmp
+
+      - uses: actions/upload-artifact@v3
+        with:
+          path: /tmp/*.apk
+          name: archlinux-package-archive
           if-no-files-found: error
           retention-days: 5
