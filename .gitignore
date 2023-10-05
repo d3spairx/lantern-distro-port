@@ -2,3 +2,5 @@
 *.pkg.tar.zst
 pkg/
 src/
+*.apk
+apk/
