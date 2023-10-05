@@ -35,7 +35,7 @@ jobs:
         uses: actions/cache/save@v3
         with:
           path: /lantern
-          key: unpacked-lantern
+          key: unpacked-lantern-${{ env.GITHUB_SHA }}
 
   pkgbuild_archlinux-package-build:
     runs-on: ubuntu-22.04
@@ -71,7 +71,7 @@ jobs:
 
       - uses: actions/cache/restore@v3
         with:
-          key: unpacked-lantern
+          key: unpacked-lantern-${{ env.GITHUB_SHA }}
           path: /lantern
 
       - name: Install nFPM
@@ -101,7 +101,7 @@ jobs:
 
       - uses: actions/cache/restore@v3
         with:
-          key: unpacked-lantern
+          key: unpacked-lantern-${{ env.GITHUB_SHA }}
           path: /lantern
 
       - name: Install nFPM
@@ -131,7 +131,7 @@ jobs:
 
       - uses: actions/cache/restore@v3
         with:
-          key: unpacked-lantern
+          key: unpacked-lantern-${{ env.GITHUB_SHA }}
           path: /lantern
 
       - name: Install nFPM
